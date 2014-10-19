@@ -3,11 +3,8 @@ $(document).ready(function() {
     $("#successMessage").hide("fast");
     loadFilters();
     loadRules();
-
 });
-
 var g_editingRuleId = 0;
-
 function loadRules() {
     $("#edit-refreshIcon").toggleClass("fa-spin");
     $("#edit-ruleList").html("");
@@ -70,6 +67,24 @@ function ruleDropdownClick(_ruleId) {
                                     <span class='input-group-addon customFontColor' style='color: #000; padding: 5px;' onclick='removeResponses(this)'><i class='fa fa-minus-square'></i></span>    </div>");
     }
 }
+/*
+ * TODO:
+ *Change the alert to a nice jquery dialogue....
+ */
+function removeRule() {
+    if (window.g_editingRuleId > 0) {
+         var result = window.confirm('Are you sure?');
+            if (result == true) {
+                $.post("deleteTweetRule.php",
+                        {ruleId: window.g_editingRuleId});
+                window.g_editingRuleId = 0;
+            };
+    }
+    else {
+        var res = ["You haven't chosen any rules to delete", "Choose a rule first then click delete", "How can I delete when there's no rule selected? PLease select a rule first!"];
+        alert(res[Math.floor((Math.random() * 3))]);
+    }
+}
 
 function addMoreResponses() {
     $("#listOfResponses").append("<div class='input-group input-group-lg' style='padding-top: 9px; padding-bottom: 9px;'>\n\
@@ -77,7 +92,6 @@ function addMoreResponses() {
                                     <span class='input-group-addon customFontColor charCount' style='color: #888; padding: 5px;'>110</span>\n\
                                     <span class='input-group-addon customFontColor' style='color: #000; padding: 5px;' onclick='addMoreResponses()'><i class='fa fa-plus-square'></i></span>\n\
                                     <span class='input-group-addon customFontColor' style='color: #000; padding: 5px;' onclick='removeResponses(this)'><i class='fa fa-minus-square'></i></span>    </div>");
-
 }
 function addMoreEditResponses() {
     $("#edit-listOfResponses").append("<div class='input-group input-group-lg' style='padding-top: 9px; padding-bottom: 9px;'>\n\
@@ -85,7 +99,6 @@ function addMoreEditResponses() {
                                     <span class='input-group-addon customFontColor charCount' style='color: #888; padding: 5px;'>110</span>\n\
                                     <span class='input-group-addon customFontColor' style='color: #000; padding: 5px;' onclick='addMoreResponses()'><i class='fa fa-plus-square'></i></span>\n\
                                     <span class='input-group-addon customFontColor' style='color: #000; padding: 5px;' onclick='removeResponses(this)'><i class='fa fa-minus-square'></i></span>    </div>");
-
 }
 function removeResponses(_me) {
     $(_me).parent().remove();
@@ -103,7 +116,6 @@ function saveData() {
         myThenTweet += $(this).val() + ";";
     });
     myThenTweet = myThenTweet.substr(0, myThenTweet.length - 1);
-
     $.post("saveTweetRule.php",
             {who: myWho, containsThis: myContainsThis, containsThat: myContainsThat, thenTweet: myThenTweet, notThis: myNotThis, ruleName: ruleName, catName: catName}).done(function(data) {
         $("#successMessage").show("fast");
@@ -122,7 +134,6 @@ function updateData() {
             myThenTweet = "",
             myWho = $("#edit-who").val().toString(),
             ruleName = $("#edit-ruleName").val().toString();
-
     $("#edit-listOfResponses .edit-answersToStore").each(function() {
         if ($(this).val().trim().length > 0)
             myThenTweet += $(this).val() + ";";
@@ -139,14 +150,10 @@ function updateData() {
         loadRules();
         console.log(xhr.responseText);
     });
-
 }
 function getFormValues(_containsThis, _containsThat, _thenTweet, _who) {
     _containsThis = $("#containsThis").val().toString();
     _containsThat = $("#containsThat").val().toString();
-
-
-
 }
 
 function updateCharCount(_me) {
@@ -169,11 +176,9 @@ var dateFormat = function() {
                     val = "0" + val;
                 return val;
             };
-
     // Regexes and supporting functions are cached through closure
     return function(date, mask, utc) {
         var dF = dateFormat;
-
         // You can't provide utc if you skip other args (use the "UTC:" mask prefix)
         if (arguments.length == 1 && Object.prototype.toString.call(date) == "[object String]" && !/\d/.test(date)) {
             mask = date;
@@ -184,9 +189,7 @@ var dateFormat = function() {
         date = date ? new Date(date) : new Date;
         if (isNaN(date))
             throw SyntaxError("invalid date");
-
         mask = String(dF.masks[mask] || mask || dF.masks["default"]);
-
         // Allow setting the utc argument via the mask
         if (mask.slice(0, 4) == "UTC:") {
             mask = mask.slice(4);
@@ -232,13 +235,11 @@ var dateFormat = function() {
                     o: (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
                     S: ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 !== 10) * d % 10]
                 };
-
         return mask.replace(token, function($0) {
             return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
         });
     };
 }();
-
 // Some common format strings
 dateFormat.masks = {
     "default": "ddd mmm dd yyyy HH:MM:ss",
@@ -254,7 +255,6 @@ dateFormat.masks = {
     isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
     isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
 };
-
 // Internationalization strings
 dateFormat.i18n = {
     dayNames: [
@@ -266,7 +266,6 @@ dateFormat.i18n = {
         "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
     ]
 };
-
 // For convenience...
 Date.prototype.format = function(mask, utc) {
     return dateFormat(this, mask, utc);

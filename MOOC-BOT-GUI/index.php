@@ -7,6 +7,9 @@
         <meta name="description" content="MOOC bot GUI">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <style>
@@ -21,6 +24,7 @@
         </style>
     </head> 
     <body> 
+        
         <div id = "container">
             <h1 class="customFontColor"><strong>Coding the MOOC</strong></h1>
             <h3 class="customFontColor" style="padding-bottom : 10px;"> Twitter Bot GUI</h3>
@@ -90,6 +94,7 @@
                             <ul id="edit-ruleList" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"  style="max-height: 500px; overflow: scroll;">
                             </ul>
                         </div>
+                        <button class="btn btn-lg center-block customFontColor" style="padding: 10px 10px 10px 10px; background-color: #2d6ca2; color: #fee;" onclick="removeRule()">Remove Rule <i class="fa fa-times"></i></button>
                         <div class="input-group input-group-lg" style="padding: 9px 9px 9px 9px;">
 
                             <input type="text" class="form-control" id="edit-ruleName" placeholder="Name of this rule!">
@@ -126,7 +131,7 @@
                         <button class="btn btn-lg center-block customFontColor" style="padding: 10px 10px 10px 10px; background-color: #2d6ca2; color: #fee;" onclick="updateData()">Update <i id="updateIcon" class="fa fa-floppy-o"></i></button>
                     </div>
                 </div>
-                <small class="center-block text-center" style="color: #777;">Version 0.1</small>
+                <small class="center-block text-center" style="color: #777;">Version 0.5</small>
             </div>
             <hr>
             <footer>

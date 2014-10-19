@@ -1,0 +1,61 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+.hadiBackground{
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+#kettleContainer {
+    text-align: center;
+    width: 500px;
+    
+    /*height: 600px;*/
+}
+#kettleContainer1 {
+    text-align: center;
+    /*background-color: #269abc;*/
+    width: 500px;
+    
+    /*height: 600px;*/
+}
+
+.setWidth500{
+     text-align: center;
+    /*background-color: #269abc;*/
+    width: 500px;
+}
+#kettleContainer svg {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    /*height: 600px;*/
+}
+
+.hadiMobile{
+}
+@media (max-width: 800px) {
+    .hadiMobile {
+        display: none;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+    }
+
+
+
+
+    .customFontColor{
+        color: #ccc;
+    }
+
+
+
+
+

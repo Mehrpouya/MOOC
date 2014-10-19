@@ -39,6 +39,7 @@
                 </ul>
                 <div class="tab-content" style="padding-bottom: 9px; padding-top: 20px;">
                     <div class="tab-pane fade-in active" id="newRule" style="padding-bottom: 50px;">
+                        <button class="btn btn-lg center-block customFontColor" style="padding: 10px 10px 10px 10px; background-color: #2d6ca2; color: #fee;" onclick="clearRule()">Clear Rule <i class="fa fa-recycle"></i></button>
                         <div class="input-group input-group-lg" style="padding: 9px 9px 9px 9px;">
                             <input type="text" class="form-control" id="ruleName" placeholder="Name of this rule!">
                         </div>
@@ -73,6 +74,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12" style="display: block;" id="successMessage"><h1 class="customFontColor">Thank you Master</h1></div>
                         <button class="btn btn-lg center-block customFontColor" style="padding: 10px 10px 10px 10px; background-color: #2d6ca2; color: #fee;" onclick="saveData()">Save <i class="fa fa-floppy-o"></i></button>
+                        
                     </div>
                     <!----------------------------------------------------Edit rule------------------------------------------------------>                        
                     <div class="tab-pane fade-in " id="updateRules" style="padding-bottom: 50px;">

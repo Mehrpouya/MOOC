@@ -73,12 +73,16 @@ function ruleDropdownClick(_ruleId) {
  */
 function removeRule() {
     if (window.g_editingRuleId > 0) {
-         var result = window.confirm('Are you sure?');
-            if (result == true) {
-                $.post("deleteTweetRule.php",
-                        {ruleId: window.g_editingRuleId});
-                window.g_editingRuleId = 0;
-            };
+        var result = window.confirm('Are you sure?');
+        if (result == true) {
+            $.post("deleteTweetRule.php",
+                    {ruleId: window.g_editingRuleId});
+            window.g_editingRuleId = 0;
+            clearEditRule();
+            $("#updateIcon").toggleClass("fa-spin");
+            loadRules();
+        }
+        ;
     }
     else {
         var res = ["You haven't chosen any rules to delete", "Choose a rule first then click delete", "How can I delete when there's no rule selected? PLease select a rule first!"];
@@ -120,10 +124,36 @@ function saveData() {
             {who: myWho, containsThis: myContainsThis, containsThat: myContainsThat, thenTweet: myThenTweet, notThis: myNotThis, ruleName: ruleName, catName: catName}).done(function(data) {
         $("#successMessage").show("fast");
         $("#successMessage").hide(3000);
+        $("#updateIcon").toggleClass("fa-spin");
+        loadRules();
     }).fail(function(data) {
         $("#successMessage").show("fast");
         $("#successMessage").hide(3000);
+        $("#updateIcon").toggleClass("fa-spin");
+        loadRules();
     });
+}
+
+
+function clearRule() {
+    $("#containsThis").val("");
+    $("#containsThat").val("");
+    $("#notThis").val("");
+    $("#catName").val("");
+    $("#who").val("");
+    $("#ruleName").val("");
+    $("#listOfResponses").html("<div class=\"input-group input-group-lg \" style=\"padding-top: 9px; padding-bottom: 9px;\"><input type=\"text\" class=\"form-control answersToStore\" placeholder=\"Tweet this message or you can add more and the Bot will choose one randomly\" onkeyup=\"javascript: updateCharCount(this)\"><span class=\"input-group-addon customFontColor\" style=\"color: #000; padding: 5px;\" onclick=\"addMoreResponses()\"><i class=\"fa fa-plus-square\"></i></span>  </div>");
+
+}
+function clearEditRule() {
+    $("#edit-containsThis").val("");
+    $("#edit-containsThat").val("");
+    $("#edit-notThis").val("");
+    $("#edit-catName").val("");
+    $("#edit-who").val("");
+    $("#edit-ruleName").val("");
+    $("#edit-listOfResponses").html("<div class=\"input-group input-group-lg \" style=\"padding-top: 9px; padding-bottom: 9px;\"><input type=\"text\" class=\"form-control edit-answersToStore\" placeholder=\"Tweet this message or you can add more and the Bot will choose one randomly\" onkeyup=\"javascript: updateCharCount(this)\"><span class=\"input-group-addon customFontColor\" style=\"color: #000; padding: 5px;\" onclick=\"addMoreResponses()\"><i class=\"fa fa-plus-square\"></i></span>  </div>");
+
 }
 
 function updateData() {
@@ -145,10 +175,11 @@ function updateData() {
     ).done(function(data) {
         $("#updateIcon").toggleClass("fa-spin");
         loadRules();
+        alert("Updated successfully, Thanks master");
     }).fail(function(xhr, textStatus, errorThrown) {
         $("#updateIcon").toggleClass("fa-spin");
         loadRules();
-        console.log(xhr.responseText);
+        alert("Updated successfully, Thanks master");
     });
 }
 function getFormValues(_containsThis, _containsThat, _thenTweet, _who) {

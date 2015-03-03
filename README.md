@@ -1,3 +1,4 @@
-Massively Open Online Courses(MOOC)
+BOT GUI - Graphical User Interface for managing twitter bot
 ====
-Add description...
+**TODO**
+- Filter function needs to be fixed – currently it doesn’t show everything within a category, and shows other rules not in that category

@@ -1,0 +1,70 @@
+#container 
+{ 
+    width:80px; 
+    height:240px; 
+    float: left;
+    overflow:hidden; 
+}
+
+.lblbottomFloat{
+    float: left;
+    text-align: center;
+}
+
+.sideBySide{
+    float: left;
+
+}
+.gaugesTable{
+    width: 900px;
+
+}
+
+.tdFixed{
+    width: 300px;
+    margin-left: auto ;
+    margin-right: auto ;
+    overflow:hidden;
+    height: 100%;
+    /* width: 20%; */
+    /* margin: 0px; */
+    /* padding: 0px; */
+}
+.tdFixed div{
+    height: 270px
+}
+.trFixed{
+    width: 800px;
+    height: 200px;
+    margin-left: auto ;
+    margin-right: auto ;
+    
+}
+
+#graphics{
+    width: 900px ;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+
+body {
+    /*background:url('../images/noise-background.jpg');*/
+    background-color: #000000;
+}
+
+
+.selected{
+    background-color: #BBBBDD;
+}
+
+#mainTitle{
+    color: aliceblue;
+    font-family: monospace;
+    font-size: 3em;
+    /*text-align: center;*/
+    
+}
+
+#mainLogo{
+    width: 900px;
+}

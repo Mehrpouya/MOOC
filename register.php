@@ -25,7 +25,7 @@ and open the template in the editor.
                 padding-bottom: 10px;
                 padding-left:   50px;
                 padding-right:  50px;
-                background-color: #00f;
+                background-color: #000;
             }
         </style>
     </head>
